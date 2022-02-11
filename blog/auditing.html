@@ -1,31 +1,38 @@
 <h1>Problem</h1>
 
-<p>
-Translating between Business KPI and ML Metric
+<h3>Translating between Business KPI and ML Metric</h3>
 
+<p>
 Simply owning a performant ML model is rarely the end goal for an organization trying to build one. Usually, they are trying to improve an internal operation (i.e. defect detection) or user-facing product (i.e. fraud alerts). Companies high on the AI adoption curve (think large self-driving car companies or FAMGA) hire lots of smart ML engineers to build models, but they also hire enormous QA and Ops teams to audit their ML-powered tools, setting downstream goals for model performance and measuring if they are achieved. These teams assess where the models are failing per some operational/business metric, then hand this feedback back to the ML teams to work on improving the model. These teams are as crucial to making ML in production as the engineers who make the models.
 
 To make these concepts concrete, let's work through an example for an AV company:
+</p>
 
-    The ML team updates and deploys an object detection model to support night scene driving.
-    The Ops team monitors performance for a number of key user metrics, recently they've been interested in reducing the amount of hard-braking that is made by the car after some incriminating videos went viral on Twitter. They wrote a data trigger that will collect events when the car decelerates beyond a threshold rate.
-    They manually review this data and see that a lot of new deceleration events happen in rainy night scenes at traffic lights. They send this feedback to the ML team.
-    ML team collects/labels new data and iterates on the model to improve rainy night scene for their traffic light detector.
+<ul>
+    <li>The ML team updates and deploys an object detection model to support night scene driving.</li>
+    <li>The Ops team monitors performance for a number of key user metrics, recently they've been interested in reducing the amount of hard-braking that is made by the car after some incriminating videos went viral on Twitter. They wrote a data trigger that will collect events when the car decelerates beyond a threshold rate.</li>
+    <li>They manually review this data and see that a lot of new deceleration events happen in rainy night scenes at traffic lights. They send this feedback to the ML team.</li>
+    <li>ML team collects/labels new data and iterates on the model to improve rainy night scene for their traffic light detector.</li>
+</ul>
 
+<p>
 In this example, we have two participating parties, the ML and Ops teams. The Ops team audits the model to direct the development made by the ML team. The recommendation from the audit is context- and time-specific: There are likely many problems with the current model, but fixing hard-braking is a priority over anything else. Our thesis is that this bifurcation of the ML development cycle emerges everywhere for all businesses that successfully adopt ML - Having an Ops team audit and direct ML development is crucial for the success of an ML deployment because there job is specifically to find what to work on next. We call this process "ML Auditing".
+</p>
 
+<p>
 Most teams build custom tools and processes to audit their models. They use tools like data triggers, live data sample feeds, and metric dashboards to determine the performance per their KPIs. Many external variables exist in any company's operations that determine how the objective to improve user experience, maximizing revenue or lowering operational costs, is to be incorporated in model development. Understanding which metrics to best target with the model right now is a core responsibility of a Ops team doing ML Auditing.
-ML Auditing for the rest of us
+</p>
+
+<h3>ML Auditing for the rest of us</h3>
 
 If you aren't in this bucket of technical sophistication (most of us aren't), systematically translating business KPIs into ML model improvements is not an easy task. Hiring an ML ops team to build these tools and do the work is a non-intuitive expense for management and demands a rare set of skills. Internal ML teams usually can't keep up with everchanging business context or don't have the time to properly audit their models. Since hiring an internal ML team is hard on its own, many companies relying on external ML vendors to build their models. These teams definitely lack the business context to do this translation themselves.
 
 Thus, when these organizations try to adopt ML, these issues culminate in one of the following outcomes:
-
-    The model never comes to fruition because the initial translation between ML and business problems is never fully realized. This is caused by misunderstanding by the stakeholder of what ML can do, or lack of business context by the ML team.
-    The model is built and deployed but no monitoring exists or plan made to make it work in the changing landscape of the business.
-    The model is built and good changes to it are identified by Ops but never implemented by ML because they moved on to a different project (or the vendor contract ends) and have no incentives to further improve the model.
-
-The solution
+<ul>
+    <li>The model never comes to fruition because the initial translation between ML and business problems is never fully realized. This is caused by misunderstanding by the stakeholder of what ML can do, or lack of business context by the ML team.</li>
+    <li>The model is built and deployed but no monitoring exists or plan made to make it work in the changing landscape of the business.</li>
+    <li>The model is built and good changes to it are identified by Ops but never implemented by ML because they moved on to a different project (or the vendor contract ends) and have no incentives to further improve the model.</li>
+</ul>
 
 We need tooling to quickly do and navigate ML model audits. This tooling would need to provide business stakeholders the ability to 1. measure the model's efficacy in their business, and 2. give actionable feedback to model developers that directs development.
 
